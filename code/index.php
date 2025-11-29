@@ -19,7 +19,7 @@
         </header>
         <div class="landing-page">
             <h1 class="big-title">Nature Emoi, meilleur que le chocolat.</h1>
-            <a class="scroll-down" href="#services">Scroll <i class="fas fa-angle-down"></i></a>
+            <a class="scroll-down" href="#services"><i class="fas fa-angle-down"></i></a>
         </div>
         
     </section>
@@ -48,6 +48,10 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
+                    <form>
+                        <input type="submit" name="Acheter">
+                    </form>
+
                 </div>
             </a>
             <a class="plant-box plant2 no-grid">
@@ -61,12 +65,16 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
             <a class="plant-box plant4 no-grid">
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">29,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
         </div>
@@ -81,36 +89,48 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">17,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
             <a class="plant-grid2 plant-box">
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">9,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
             <a class="plant-grid3 plant-box">
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">44,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
             <a class="plant-grid4 plant-box">
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">39,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
             <a class="plant-grid5 plant-box">
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">17,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
             <a class="plant-grid6 plant-box">
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
+                    <input class="button" type="button" value="Acheter" >
+
                 </div>
             </a>
         </div>
