@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finaliser votre commande</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .checkout-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .checkout-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background: #218838;
+        }
+        .order-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .order-summary h3 {
+            margin-top: 0;
+        }
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <h1>Finaliser votre commande</h1>
+
+        <?php
+        // Traitement du formulaire
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupération des données
+            $nom = htmlspecialchars($_POST['nom'] ?? '');
+            $prenom = htmlspecialchars($_POST['prenom'] ?? '');
+            $email = htmlspecialchars($_POST['email'] ?? '');
+            $telephone = htmlspecialchars($_POST['telephone'] ?? '');
+            $adresse = htmlspecialchars($_POST['adresse'] ?? '');
+            $ville = htmlspecialchars($_POST['ville'] ?? '');
+            $code_postal = htmlspecialchars($_POST['code_postal'] ?? '');
+            $pays = htmlspecialchars($_POST['pays'] ?? '');
+            $article_id = htmlspecialchars($_POST['article_id'] ?? '');
+            $article_nom = htmlspecialchars($_POST['article_nom'] ?? '');
+            $article_prix = htmlspecialchars($_POST['article_prix'] ?? '');
+
+            // Validation basique
+            $errors = [];
+            if (empty($nom)) $errors[] = "Le nom est requis";
+            if (empty($prenom)) $errors[] = "Le prénom est requis";
+            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email invalide";
+            if (empty($adresse)) $errors[] = "L'adresse est requise";
+            if (empty($ville)) $errors[] = "La ville est requise";
+            if (empty($code_postal)) $errors[] = "Le code postal est requis";
+
+            if (empty($errors)) {
+                // Ici tu peux ajouter la logique pour :
+                // - Sauvegarder en base de données
+                // - Envoyer un email de confirmation
+                // - Traiter le paiement
+                
+                // Pour l'instant, on affiche un message de succès
+                echo '<div class="message success">';
+                echo '<strong>Commande confirmée !</strong><br>';
+                echo 'Merci ' . $prenom . ' ' . $nom . ', votre commande a été enregistrée.<br>';
+                echo 'Un email de confirmation sera envoyé à ' . $email;
+                echo '</div>';
+                
+                // Log de la commande (pour debug)
+                $log_data = date('Y-m-d H:i:s') . " - Commande: $article_nom ($article_prix€) - Client: $prenom $nom - $email\n";
+                file_put_contents('commandes.log', $log_data, FILE_APPEND);
+            } else {
+                echo '<div class="message error">';
+                echo '<strong>Erreurs :</strong><ul>';
+                foreach ($errors as $error) {
+                    echo '<li>' . $error . '</li>';
+                }
+                echo '</ul></div>';
+            }
+        }
+
+        // Récupération des infos article depuis l'URL
+        $article_id = htmlspecialchars($_GET['article_id'] ?? '');
+        $article_nom = htmlspecialchars($_GET['article_nom'] ?? 'Article');
+        $article_prix = htmlspecialchars($_GET['article_prix'] ?? '0');
+        ?>
+
+        <!-- Résumé de la commande -->
+        <div class="order-summary">
+            <h3>Votre article</h3>
+            <p><strong><?php echo $article_nom; ?></strong></p>
+            <p>Prix : <strong><?php echo $article_prix; ?> €</strong></p>
+        </div>
+
+        <!-- Formulaire -->
+        <form method="POST" action="checkout.php">
+            <!-- Champs cachés pour l'article -->
+            <input type="hidden" name="article_id" value="<?php echo $article_id; ?>">
+            <input type="hidden" name="article_nom" value="<?php echo $article_nom; ?>">
+            <input type="hidden" name="article_prix" value="<?php echo $article_prix; ?>">
+
+            <h3>Informations personnelles</h3>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prenom">Prénom *</label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom *</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" id="telephone" name="telephone">
+            </div>
+
+            <h3>Adresse de livraison</h3>
+
+            <div class="form-group">
+                <label for="adresse">Adresse *</label>
+                <input type="text" id="adresse" name="adresse" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ville">Ville *</label>
+                    <input type="text" id="ville" name="ville" required>
+                </div>
+                <div class="form-group">
+                    <label for="code_postal">Code postal *</label>
+                    <input type="text" id="code_postal" name="code_postal" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pays">Pays</label>
+                <select id="pays" name="pays">
+                    <option value="France" selected>France</option>
+                    <option value="Belgique">Belgique</option>
+                    <option value="Suisse">Suisse</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Confirmer la commande</button>
+        </form>
+
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="index.html">← Retour à la boutique</a>
+        </p>
+    </div>
+</body>
+</html>
