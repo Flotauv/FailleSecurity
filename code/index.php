@@ -1,1 +1,4 @@
-<?php echo="SALUT" ?>
+<?php
+
+echo "<p>Bonjour</p>";
+
