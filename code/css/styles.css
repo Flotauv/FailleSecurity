@@ -19,6 +19,7 @@ body {
 header.header {
     display: flex;
     align-items: center;
+    background-color: red;
     
 }
 
@@ -36,14 +37,7 @@ section.top-page {
     
 }
 
-section.top-page-f {
-    background: url('../images/bg.jpg');
-    background-size: cover;
-    height: 80vh;
-    padding: 25px;
-    background-color: red;
-    
-}
+
 
 /* page de bienvenue (landing page) */
 
@@ -248,8 +242,38 @@ footer a.cgv {
 
 /* formulaire */
 
-.test {
-    background-color: red;
-    border: solid 4px;
-    border-color: blueviolet;
+section.test {
+    
+    height: 150px;
+    padding-right: 30px;
+    background: url('../images/bg.jpg');
+    background-size: auto;
+    
+}
+
+nav.nav-f {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 400px;
+    margin-left: 30px;
+
+}
+nav.nav-f li a {
+    color: white;
+    text-decoration: none;
+}
+header.header-f img {
+    width: 150px;
+    
+}
+
+section.infos-formulaire {
+    background-color: gray;
+
+}
+
+section.infos-formulaire form {
+    background-color: purple;
+
 }
