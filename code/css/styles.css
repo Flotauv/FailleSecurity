@@ -19,17 +19,30 @@ body {
 header.header {
     display: flex;
     align-items: center;
+    
 }
 
 header.header img {
     width: 150px;
+    
 }
 
 section.top-page {
     background: url('../images/bg.jpg');
+    background-size: auto;
+    height: 80vh;
+    padding: 25px;
+    
+    
+}
+
+section.top-page-f {
+    background: url('../images/bg.jpg');
     background-size: cover;
     height: 80vh;
     padding: 25px;
+    background-color: red;
+    
 }
 
 /* page de bienvenue (landing page) */
@@ -231,4 +244,12 @@ footer {
 footer a.cgv {
     text-decoration: none;
     color: black;
+}
+
+/* formulaire */
+
+.test {
+    background-color: red;
+    border: solid 4px;
+    border-color: blueviolet;
 }

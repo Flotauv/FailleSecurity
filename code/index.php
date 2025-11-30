@@ -1,3 +1,11 @@
+<?php
+
+if (isset($_POST['hello']))
+{
+header('Location:formulaire.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,7 +20,7 @@
         <header class="header">
             <img src="images/logo.png" alt="Logo du site">
             <nav class="nav">
-                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.php">Accueil</a></li>
                 <li><a href="#bests-items">Nos meilleurs ventes</a></li>
                 <li><a href="#all-plants">Nos plantes</a></li>
             </nav>
@@ -48,8 +56,8 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
-                    <form>
-                        <input type="submit" name="Acheter">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
                     </form>
 
                 </div>
@@ -58,14 +66,16 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">14,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
                 </div>
             </a>
             <a class="plant-box plant3 no-grid">
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
@@ -73,7 +83,7 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">29,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
@@ -89,7 +99,7 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">17,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
@@ -97,7 +107,7 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">9,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
@@ -105,7 +115,7 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">44,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
@@ -113,7 +123,7 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">39,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
@@ -121,7 +131,7 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">17,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
@@ -129,7 +139,7 @@
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
-                    <input class="button" type="button" value="Acheter" >
+                    <input type="submit" value="Acheter" name="hello">
 
                 </div>
             </a>
