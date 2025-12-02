@@ -40,6 +40,7 @@ Types de client-side attacks : cross-site scripting (xss), cross-site request fo
 
 Plus généralement pour réduire les potentiel attaque xss par injection de code, il faut limiter les scripts tiers sur le site. On peut également Utiliser des outils d’analyse automatisée (SAST / DAST) permet de détecter les failles XSS ou les scripts suspects.
 Plus précisément un Un SAST (Static Application Security Testing) est une méthode d’analyse de sécurité qui consiste à examiner le code source d’une application sans l’exécuter, afin de détecter automatiquement des failles comme les XSS, injections SQL ou erreurs de sécurité dès la phase de développement. En effet, il permet d’identifier les vulnérabilités avant la mise en production, directement dans le code, ce qui réduit les risques et le coût des corrections.
+Un DAST (Dynamic Application Security Testing) est une méthode de test de sécurité qui analyse une application en fonctionnement. un DAST n'a pas accès à code source de l'application pour détecter des vulnérabilités exploitables comme les failles XSS, injections SQL ou problèmes d’authentification. En effet, il simule des attaques réelles en envoyant des requêtes malveillantes à l’application et observe ses réactions. Ce qui permet d’identifier les failles du point de vue d’un attaquant externe. Ainsi un DAST, à l'inverse du SAST (qui analyse le code), teste le comportement réel de l’application en conditions proches de la production.
 
 
 ```
