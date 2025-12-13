@@ -15,22 +15,75 @@ L’attaque a duré environ 2 semaines, affectant plus de 380 000 clients.
 Ces données sensibles ont été exfiltrées sans interrompre la procédure de paiement normale, ce qui rendait l’attaque furtive.  
 Ainsi, cette attaque est une compromission de l'intégrité du code puisque les attaquant ont rajouté des lignes de java et une compromissions des données car ce code leur permettait d'exporter des données sensibles d'utilisateurs vers leur propre domaine.
 
-**Vulnérabilité expliquée (à arranger)**  
- 
- Les attaques côté client exploitent la relation de confiance entre un utilisateur et les sites Web qu'il visite = attaque où la connexion au contenu malveillant est initiée à partir du client (généralement en étant incité à cliquer sur un lien malveillant dans un e-mail, un message instantané, ou autre : user interaction often needed), contrairement aux server-side attacks où le serveur initie l'attaque (par exemple SQL injection).
+**Vulnérabilité expliquée**  
 
-l'attaquant envoie un lien ou autre. Le client clique et initie la connection au serveur malicieux. Puis, le serveur renvoie le code malicieux.
-L'objectif étant de cibler les vulnérabilités de l'appareil client ou d'un ou plusieurs de ses logiciels (comprennent des logiciels de traitement de texte, lecteur PDF, des navigateurs Web, environnement Java, etc). Dans le but d’obtenir des informations sensibles (cookies, identifiants, numéro de CB, etc.) ou carrément de prendre le contrôle des postes de travail infectés.
+**Faille XSS (=cross-site scripting)** : vulnérabilité de sécurité des pages Web, où l'attaquant arrive à injecter du code directement interprétable par un navigateur web, comme du JavaScript ou de l’HTML.  
+Le navigateur ne fera aucune différence entre le code du site et celui injecté par l'attaquant, et exécutera le code.
 
-Types de client-side attacks : cross-site scripting (xss), cross-site request forgery (csrf), content spoofing, session fixation, clickjacking
+Les possibilités sont nombreuses : redirection vers un autre site, vol de cookies, modification du code HTML de la page...
+
+Les attaques côté client exploitent la relation de confiance entre un utilisateur et les sites Web qu'il visite.  
+L'attaque où la connexion au contenu malveillant est initiée à partir du client (généralement en étant incité à cliquer sur un lien malveillant dans un e-mail, un message instantané, ou autre : user interaction often needed), contrairement aux server-side attacks où le serveur initie l'attaque (par exemple SQL injection).
+
+!['Intjection-code-tentative'](images/injection-code-tentative.jpg)
+
+Exemple de faille XSS dit **"reflected"**, en théorie, le site nous renvoit le texte entré dans la case du formulaire, le pirate via un formulaire injecte son code malicieux sous forme d'une balise **script**.
+
+!['Injection-code-result'](images/injection-code-result.jpg)
+
+On voit bien que le serveur web d'adresse IP : 192.168.1.172 renvoit le contenu dans la balise **script** à savoir le texte : 'Exemple XSS reflété' avec une faute d'ortographe.  
+
+L'objectif étant de cibler les vulnérabilités de l'appareil client ou d'un ou plusieurs de ses logiciels (comprennent des logiciels de traitement de texte, lecteur PDF, des navigateurs Web, environnement Java, etc) dans le but d’obtenir des informations sensibles (cookies, identifiants, numéro de CB, etc.) ou de prendre le contrôle des postes de travail infectés.
+
 
 **Architecture et schéma de la faille**
 
 !['Text'](images/schema-attack.jpeg)
 
+Ce schéma montre le cheminement classique d'une requête http lorsqu'un utilisateur va effectuer une recherche sur le web.
+
+La requête est traitée suivant si l'intitulé est 'GET', 'POST' ... par le serveur.
+
+- Le serveur web va traiter les fichiers .css, .php, .js ... correspondant à la "fabrication" de mon site en backend pour en ressortir un document .html qui peut être lu par mon navigateur et m'afficher un site tout beau tout propre.
+
+- C'est au moment où la requête du web vers le serveur web que l'injection de script ou de requêtes SQL peut se faire.
+
+- Le serveur web traite alors les fichiers correspondant avec un code extérieur dans sa structure non vérifié. 
+
+
 **Comment se prémunir ?**
 
-- Protéger notre code java en incorporant dans le code php la détection de balises **"script"**
+Un **SAST (Static Application Security Testing)** est une méthode d’analyse de sécurité qui consiste à examiner le code source d’une application sans l’exécuter, afin de détecter automatiquement des failles comme les XSS, injections SQL ou erreurs de sécurité dès la phase de développement.  
+ En effet, il permet d’identifier les vulnérabilités avant la mise en production, directement dans le code, ce qui réduit les risques et le coût des corrections.
+
+Un **DAST (Dynamic Application Security Testing)** est une méthode de test de sécurité qui analyse une application en fonctionnement.  
+ 
+En effet, il simule des attaques réelles en envoyant des requêtes malveillantes à l’application et observe ses réactions. Ce qui permet d’identifier les failles du point de vue d’un attaquant externe. Ainsi un **DAST**, à l'inverse du **SAST** (qui analyse le code), teste le comportement réel de l’application en conditions proches de la production.
+
+```
+<?php
+header ("Mon site tout beau tout propre")
+if (array_key_exists("name", $_GET ) && $_GET[ 'name' ] != NULL){
+    $name = str_replace('<script>', '', $_GET[ 'name' ] );
+
+    echo "<pre> Hello $(name)<pre>";
+}
+?>
+```
+Ce code .php présent dans le code source va permettre de remplacer l'input **'script'** s'il existe en une chaine vide de caractère avant qu'il soit incorporé dans le fichier .html et qu'il soit interprété comme une balise **'script'**.  
+
+```
+<?php
+header ("Mon site tout beau tout propre")
+if (array_key_exists("name", $_GET ) && $_GET[ 'name' ] != NULL){
+    $name = preg_replace( '/<(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i', '', $_GET[ 'name' ]);
+
+    echo "<pre> Hello $(name)<pre>";
+}
+?>
+
+```
+Code .php contre l'écriture de **'script'** avec une majuscule. 
 
 - Mettre en place une CSP (Content Security Policy): cela permet de limiter les sources autorisées pour charger du JavaScript. Ainsi, même si un script malveillant est injecté, le navigateur le bloque s’il vient d’une source qui n'est pas autorisée.
 
@@ -38,9 +91,8 @@ Types de client-side attacks : cross-site scripting (xss), cross-site request fo
 
 - Mettre en place une solution de file integrity monitoring qui permet de détecter une modification non autorisée dans les fichiers JavaScript du serveur et la bloque. 
 
-Plus généralement pour réduire les potentiel attaque xss par injection de code, il faut limiter les scripts tiers sur le site. On peut également Utiliser des outils d’analyse automatisée (SAST / DAST) permet de détecter les failles XSS ou les scripts suspects.
-Plus précisément un Un SAST (Static Application Security Testing) est une méthode d’analyse de sécurité qui consiste à examiner le code source d’une application sans l’exécuter, afin de détecter automatiquement des failles comme les XSS, injections SQL ou erreurs de sécurité dès la phase de développement. En effet, il permet d’identifier les vulnérabilités avant la mise en production, directement dans le code, ce qui réduit les risques et le coût des corrections.
-Un DAST (Dynamic Application Security Testing) est une méthode de test de sécurité qui analyse une application en fonctionnement. un DAST n'a pas accès à code source de l'application pour détecter des vulnérabilités exploitables comme les failles XSS, injections SQL ou problèmes d’authentification. En effet, il simule des attaques réelles en envoyant des requêtes malveillantes à l’application et observe ses réactions. Ce qui permet d’identifier les failles du point de vue d’un attaquant externe. Ainsi un DAST, à l'inverse du SAST (qui analyse le code), teste le comportement réel de l’application en conditions proches de la production.
+
+
 
 
 
