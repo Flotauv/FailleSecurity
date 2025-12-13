@@ -43,7 +43,7 @@ Plus précisément un Un SAST (Static Application Security Testing) est une mét
 Un DAST (Dynamic Application Security Testing) est une méthode de test de sécurité qui analyse une application en fonctionnement. un DAST n'a pas accès à code source de l'application pour détecter des vulnérabilités exploitables comme les failles XSS, injections SQL ou problèmes d’authentification. En effet, il simule des attaques réelles en envoyant des requêtes malveillantes à l’application et observe ses réactions. Ce qui permet d’identifier les failles du point de vue d’un attaquant externe. Ainsi un DAST, à l'inverse du SAST (qui analyse le code), teste le comportement réel de l’application en conditions proches de la production.
 
 
-```
+
 **Quelles sont les bonnes pratiques à effectuer ?**
 
 ## Exploitation de la faille de sécurité (Démo)
