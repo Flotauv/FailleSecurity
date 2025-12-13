@@ -1,3 +1,12 @@
+<?php
+    $nom = '';
+    $prenom = '';
+    $email = '';
+    $telephone = '';
+    $numero_carte = '';
+    $date = '';
+    $pictogramme = '';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,9 +31,10 @@
     </section>
     <section class="infos-formulaire">
         <h1>Formulaire d'achat</h1>
-        <form id='formulaire'>
+        <form id='formulaire' method="post">
             <label for="nom">Nom*</label>
             <input type="text" id="nom" name="nom" required />
+    
 
             <label for="prenom">Prénom*</label>
             <input type="text" id="prenom" name="prenom" required />
@@ -46,9 +56,19 @@
             <label for="pictogramme">Pictogramme*</label>
             <input type="text" id="pictogramme" name="pictogramme" required />
 
-            <button type="submit">Valider</button>
+            <button type="submit" name="formsend" id="formsend">Valider</button>
 
         </form>
+        <?php
+
+            if(isset($_POST['formsend'])){
+                echo "Votre nom :".$_POST['nom'];
+                echo "Votre prénom :".$_POST['prénom'];
+
+
+            }
+
+        ?>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("formulaire").addEventListener("submit", function(e){
@@ -65,11 +85,18 @@
 
                     let dataObject = Object.fromEntries(formData.entries());
                     console.log(dataObject);
+
+                    document.getElementById("formulaire").reset();
+
+                    // Message de confirmation 
+                    // document.getElementById("formulaire").innerHTML = "Commande validée"
                 });
                 
             });
         </script>
+        
 
     </section>
     
 </body>
+
