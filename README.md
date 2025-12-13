@@ -17,7 +17,7 @@ Ainsi, cette attaque est une compromission de l'intégrité du code puisque les 
 
 **Vulnérabilité expliquée**  
 
-**Faille XSS (=cross-site scripting)** : vulnérabilité de sécurité des pages Web, où l'attaquant arrive à injecter du code directement interprétable par un navigateur web, comme du JavaScript ou de l’HTML.  
+**Faille XSS (Cross-Site Scripting)** : vulnérabilité de sécurité des pages Web, où l'attaquant arrive à injecter du code directement interprétable par un navigateur web, comme du JavaScript ou de l’HTML.  
 Le navigateur ne fera aucune différence entre le code du site et celui injecté par l'attaquant, et exécutera le code.
 
 Les possibilités sont nombreuses : redirection vers un autre site, vol de cookies, modification du code HTML de la page...
@@ -85,6 +85,14 @@ if (array_key_exists("name", $_GET ) && $_GET[ 'name' ] != NULL){
 ```
 Code .php contre l'écriture de **'script'** avec une majuscule. 
 
+```
+function secure($variable) {
+        return htmlspecialchars(trim($variable), ENT_QUOTES, 'UTF-8');
+    }
+
+```
+Fonction qui empêche l'ajout de caractères autres que des lettres (tout ce qui est <> pour l'ajout de bouttons ou de balises est impossible.)
+
 - Mettre en place une CSP (Content Security Policy): cela permet de limiter les sources autorisées pour charger du JavaScript. Ainsi, même si un script malveillant est injecté, le navigateur le bloque s’il vient d’une source qui n'est pas autorisée.
 
 - Mettre en place un SRI (SubResource Integration) permet de vérifier automatiquement que les fichiers JavaScript chargés (librairies externes) n'ont pas été modifiés. Donc, si un attaquant modifie un script légitime (comme dans l’affaire British Airways), le navigateur bloque immédiatement son chargement.
@@ -100,16 +108,36 @@ Code .php contre l'écriture de **'script'** avec une majuscule.
 
 ## Exploitation de la faille de sécurité (Démo)
 
+
 **Étape 1** : Lancer le server web à distance via la commande 
 
 ````
 docker compose up -d
 ````
+Note : Docker doit être entrain de tourner sur votre machine.
+
+**Étape 2** : Se rendre sur notre merveilleux site de démo via le port 80.
+
+````
+
+localhost/8080
+
+````
+**Étape 3** : Achetez un article pour remplir le formulaire
 
 
+**Étape 4** : Amusez vous à faire bugger le site (redirection vers d'autres pages, ajout de code marrant ...).
 
+````
+<script>alert("Faille XSS détectée);</script>
+````
 
-## Source utilisé pour notre devoir
+````
+<script>window.location="https://pigeon.com"</script>
+````
+Commande pour diriger l'utilisateur vers un site de son choix 
+
+## Sources
 https://www.youtube.com/watch?v=E47rY21gXSY
 
 https://schoenbaum.medium.com/inside-the-breach-of-british-airways-how-22-lines-of-code-claimed-380-000-victims-8ce1582801a0

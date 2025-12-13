@@ -75,7 +75,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
@@ -83,7 +85,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">29,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
@@ -99,7 +103,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">17,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
@@ -107,7 +113,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">9,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
@@ -115,7 +123,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">44,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
@@ -123,7 +133,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">39,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
@@ -131,7 +143,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">17,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
@@ -139,7 +153,9 @@ header('Location:formulaire.php');
                 <div class="plant-details">
                     <p class="plant-name">Plante</p>
                     <p class="plant-price">24,99€</p>
-                    <input type="submit" value="Acheter" name="hello">
+                    <form method="post">
+                        <input type="submit" value="Acheter" name="hello">
+                    </form>
 
                 </div>
             </a>
