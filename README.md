@@ -100,6 +100,14 @@ Code .php contre l'écriture de **'script'** avec une majuscule.
 
 ## Exploitation de la faille de sécurité (Démo)
 
+**Étape 1** : Lancer le server web à distance via la commande 
+
+````
+docker compose up -d
+````
+
+
+
 
 ## Source utilisé pour notre devoir
 https://www.youtube.com/watch?v=E47rY21gXSY

@@ -19,7 +19,6 @@ body {
 header.header {
     display: flex;
     align-items: center;
-    background-color: red;
     
 }
 
