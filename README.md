@@ -36,7 +36,7 @@ On voit bien que le serveur web d'adresse IP : 192.168.1.172 renvoit le contenu 
 L'objectif étant de cibler les vulnérabilités de l'appareil client ou d'un ou plusieurs de ses logiciels (comprennent des logiciels de traitement de texte, lecteur PDF, des navigateurs Web, environnement Java, etc) dans le but d’obtenir des informations sensibles (cookies, identifiants, numéro de CB, etc.) ou de prendre le contrôle des postes de travail infectés.
 
 
-## Architecture et schéma de la faille**
+## Architecture et schéma de la faille
 
 !['Text'](images/schema-attack.jpeg)
 
@@ -59,6 +59,8 @@ Un **SAST (Static Application Security Testing)** est une méthode d’analyse d
 Un **DAST (Dynamic Application Security Testing)** est une méthode de test de sécurité qui analyse une application en fonctionnement.  
  
 En effet, il simule des attaques réelles en envoyant des requêtes malveillantes à l’application et observe ses réactions. Ce qui permet d’identifier les failles du point de vue d’un attaquant externe. Ainsi un **DAST**, à l'inverse du **SAST** (qui analyse le code), teste le comportement réel de l’application en conditions proches de la production.
+
+**Quelques exemples de codes de sécurité**
 
 ```
 <?php
@@ -129,10 +131,10 @@ Note : Docker doit être entrain de tourner sur votre machine.
 localhost/8080
 
 ````
-**Étape 3** : Achetez un article pour remplir le formulaire
+**Étape 3** : Cliquez sur le boutton "Acheter" pour passer au formulaire
 
 
-**Étape 4** : Amusez vous à faire bugger le site (redirection vers d'autres pages, ajout de code marrant ...).
+**Étape 4** : Amusez vous à faire injecter du code dans le site (redirection vers d'autres pages, ajout de code marrant ...).
 
 ````
 <script>alert("Faille XSS détectée);</script>
