@@ -1,0 +1,40 @@
+<form method="post">
+        <input type="text" name="name" placeholder="Votre Nom">
+        <input type="text" name="prenom" placeholder="Votre prenom">
+        <input type="submit" name="formsend" id="formsend">
+    </form>
+
+    <?php
+    if (isset($_POST['formsend'])){
+        echo "Formulaire envoyé";
+    }
+    ?>
+    <script>alert("XSS detectée");</script>
+
+    <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("formulaire").addEventListener("submit", function(e){
+                    e.preventDefault();
+
+                    let formData = new FormData();
+                    formData.append("nom", document.querySelector("#name").value.trim());
+                    formData.append("prenom", document.querySelector("#prenom").value.trim());
+                    formData.append("email", document.querySelector("#email").value.trim());
+                    formData.append("telephone", document.querySelector("#telephone").value.trim());
+                    formData.append("numero-carte", document.querySelector("#numero-carte").value.trim());
+                    formData.append("mois-annee", document.querySelector("#mois-annee").value.trim());
+                    formData.append("pictogramme", document.querySelector("#pictogramme").value.trim());
+
+                    let dataObject = Object.fromEntries(formData.entries());
+                    console.log(dataObject);
+
+                    document.getElementById("formulaire").reset();
+
+                    // Message de confirmation 
+                    // document.getElementById("formulaire").innerHTML = "Commande validée"
+                });
+                
+            });
+        </script>
+
+        <script>window.location='https://www.pigeon.com'</script>

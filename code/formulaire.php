@@ -1,20 +1,14 @@
 <?php
-    $nom = '';
-    $prenom = '';
-    $email = '';
-    $telephone = '';
-    $numero_carte = '';
-    $date = '';
-    $pictogramme = '';
+    $nom = isset($_POST['nom']);
+    $prenom = isset($_POST['prenom']);
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NatureEmoi - Ventes de plantes en ligne</title>
+    <title>Formulaire</title>
     <link rel="stylesheet" href="css/styles.css">
-    
 </head>
 <body>
     <section class="test">
@@ -29,74 +23,44 @@
         </header>
 
     </section>
-    <section class="infos-formulaire">
-        <h1>Formulaire d'achat</h1>
-        <form id='formulaire' method="post">
-            <label for="nom">Nom*</label>
-            <input type="text" id="nom" name="nom" required />
+    <h1>Formulaire d'achat</h1>
+    <form method="post" id="formulaire">
+
+        <label for="nom"><strong>Nom :</strong></label>
+        <input type="text" name="name" placeholder="Nom" required >
+
+        <label for="prenom"> <strong>Prénom :</strong></label>
+        <input type="text" name="prenom" placeholder="Prénom" required >
+
+        <label for="telephone"><strong>Téléphone :</strong></label>
+        <input type="text" name="num_telephone" placeholder="Numéro" required>
+
+        <h2>Données bancaires</h2>
+
+        <label for="numero-carte"><strong>Numéro de carte :</strong><label>
+        <input type="text" id="numero-carte" name="numero-carte" required />
+
+        <label for="mois-annee"><strong>Mois/Année :</strong></label>
+        <input type="text" id="mois-annee" name="mois-annee" required />
+
+        <label for="pictogramme"><strong>Pictogramme :</strong></label>
+        <input type="text" id="pictogramme" name="pictogramme" required />
+
+        <input type="submit" name="formsend" id="formsend">
+    </form>
+    <div id='sumit-infos'>
+
+    <p>
+        <?php if (isset($_POST['formsend'])){
+        echo "Coordonnées validées avec succès ! M/Mme : ".$_POST['name'].' '.$_POST['prenom'];
+
+    }
+    ?>
+    </p>
     
-
-            <label for="prenom">Prénom*</label>
-            <input type="text" id="prenom" name="prenom" required />
-
-            <label for="email">Email*</label>
-            <input type="text" id="email" name="email" required />
-
-            <label for="telephone">Téléphone*</label>
-            <input type="text" id="telephone" name="telephone" required /> <br>
-
-            <h2>Données bancaires</h2>
-
-            <label for="numero-carte">Numéro de carte*</label>
-            <input type="text" id="numero-carte" name="numero-carte" required />
-
-            <label for="mois-annee">Mois/Année (MM/AAAA)*</label>
-            <input type="text" id="mois-annee" name="mois-annee" required />
-
-            <label for="pictogramme">Pictogramme*</label>
-            <input type="text" id="pictogramme" name="pictogramme" required />
-
-            <button type="submit" name="formsend" id="formsend">Valider</button>
-
-        </form>
-        <?php
-
-            if(isset($_POST['formsend'])){
-                echo "Votre nom :".$_POST['nom'];
-                echo "Votre prénom :".$_POST['prénom'];
+    </div>
 
 
-            }
-
-        ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                document.getElementById("formulaire").addEventListener("submit", function(e){
-                    e.preventDefault();
-
-                    let formData = new FormData();
-                    formData.append("nom", document.querySelector("#nom").value.trim());
-                    formData.append("prenom", document.querySelector("#prenom").value.trim());
-                    formData.append("email", document.querySelector("#email").value.trim());
-                    formData.append("telephone", document.querySelector("#telephone").value.trim());
-                    formData.append("numero-carte", document.querySelector("#numero-carte").value.trim());
-                    formData.append("mois-annee", document.querySelector("#mois-annee").value.trim());
-                    formData.append("pictogramme", document.querySelector("#pictogramme").value.trim());
-
-                    let dataObject = Object.fromEntries(formData.entries());
-                    console.log(dataObject);
-
-                    document.getElementById("formulaire").reset();
-
-                    // Message de confirmation 
-                    // document.getElementById("formulaire").innerHTML = "Commande validée"
-                });
-                
-            });
-        </script>
-        
-
-    </section>
     
 </body>
-
+</html>
