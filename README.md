@@ -15,7 +15,7 @@ L’attaque a duré environ 2 semaines, affectant plus de 380 000 clients.
 Ces données sensibles ont été exfiltrées sans interrompre la procédure de paiement normale, ce qui rendait l’attaque furtive.  
 Ainsi, cette attaque est une compromission de l'intégrité du code puisque les attaquant ont rajouté des lignes de java et une compromissions des données car ce code leur permettait d'exporter des données sensibles d'utilisateurs vers leur propre domaine.
 
-**Vulnérabilité expliquée**  
+## Vulnérabilité expliquée 
 
 **Faille XSS (Cross-Site Scripting)** : vulnérabilité de sécurité des pages Web, où l'attaquant arrive à injecter du code directement interprétable par un navigateur web, comme du JavaScript ou de l’HTML.  
 Le navigateur ne fera aucune différence entre le code du site et celui injecté par l'attaquant, et exécutera le code.
@@ -36,7 +36,7 @@ On voit bien que le serveur web d'adresse IP : 192.168.1.172 renvoit le contenu 
 L'objectif étant de cibler les vulnérabilités de l'appareil client ou d'un ou plusieurs de ses logiciels (comprennent des logiciels de traitement de texte, lecteur PDF, des navigateurs Web, environnement Java, etc) dans le but d’obtenir des informations sensibles (cookies, identifiants, numéro de CB, etc.) ou de prendre le contrôle des postes de travail infectés.
 
 
-**Architecture et schéma de la faille**
+## Architecture et schéma de la faille**
 
 !['Text'](images/schema-attack.jpeg)
 
@@ -51,7 +51,7 @@ La requête est traitée suivant si l'intitulé est 'GET', 'POST' ... par le ser
 - Le serveur web traite alors les fichiers correspondant avec un code extérieur dans sa structure non vérifié. 
 
 
-**Comment se prémunir ?**
+## Comment se prémunir ?
 
 Un **SAST (Static Application Security Testing)** est une méthode d’analyse de sécurité qui consiste à examiner le code source d’une application sans l’exécuter, afin de détecter automatiquement des failles comme les XSS, injections SQL ou erreurs de sécurité dès la phase de développement.  
  En effet, il permet d’identifier les vulnérabilités avant la mise en production, directement dans le code, ce qui réduit les risques et le coût des corrections.
@@ -104,7 +104,7 @@ Fonction qui empêche l'ajout de caractères autres que des lettres (tout ce qui
 
 
 
-**Quelles sont les bonnes pratiques à effectuer ?**
+## Quelles sont les bonnes pratiques à effectuer ?
 
 ## Exploitation de la faille de sécurité (Démo)
 
