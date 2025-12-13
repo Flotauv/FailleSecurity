@@ -106,6 +106,12 @@ Fonction qui empêche l'ajout de caractères autres que des lettres (tout ce qui
 
 ## Quelles sont les bonnes pratiques à effectuer ?
 
+- Toujours vérifier l'accès à une interface web : le http**S** à la fin !  
+Dans notre exemple, on aurait très bien pu faire rediriger vers un autre site malveillant avec l'injection du code explicité précèdement. 
+
+- Utilisation de Réseau Privé Virtuel (VPN) qui permet de protéger le traffic réseau.
+
+- Être vigilant aux symptomes de présence des codes malveillants comme des potentiels ralentissements, des ajouts d'extension non désirées, surcharge du processeur, l'antivirus ou les antimalware désactivés sans son intervention ...
 ## Exploitation de la faille de sécurité (Démo)
 
 
@@ -131,11 +137,18 @@ localhost/8080
 ````
 <script>alert("Faille XSS détectée);</script>
 ````
+Script pour mettre en évidence la faille !
 
 ````
 <script>window.location="https://pigeon.com"</script>
 ````
 Commande pour diriger l'utilisateur vers un site de son choix 
+
+Commande pour arrêter le serveur web:
+
+`````
+Docker compose down
+`````
 
 ## Sources
 https://www.youtube.com/watch?v=E47rY21gXSY
