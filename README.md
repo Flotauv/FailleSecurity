@@ -3,15 +3,16 @@
 ## Généralité 
 
 Le projet a pour vocation d'exploiter une faille pour sensibiliser les personnes aux attaques de cybersécurité. 
+
 ## British Airways et sa faille XSS
 **Service compromis**. 
 
 La faille que nous avons choisit est de type XSS et a touché British Airways en 2018. 
 L’entreprise a subi une attaque Magecart sur sa page de paiement en ligne.  
 Les attaquants ont réussi à injecter des lignes de code JavaScript dans une bibliothèque tierce (Modernizr) chargée par le site web de British Airways.  
-Ce script captait les informations saisies dans le formulaire  que remplissait l’utilisateur (nom, adresse, numéro de carte...) au moment où il validait son paiement.  
-Puis les envoyait vers un domaine contrôlé par les attaquants.  
-L’attaque a duré environ 2 semaines, affectant plus de 380 000 clients.  
+Ce script captait les informations saisies dans le formulaire  que remplissait l’utilisateur (nom, adresse, numéro de carte...) au moment où il validait son paiement par carte.  
+Puis les envoyait vers un domaine contrôlé par les attaquants.
+L’attaque a duré environ 2 semaines et a affecté plus de 380 000 clients.  
 Ces données sensibles ont été exfiltrées sans interrompre la procédure de paiement normale, ce qui rendait l’attaque furtive.  
 Ainsi, cette attaque est une compromission de l'intégrité du code puisque les attaquant ont rajouté des lignes de java et une compromissions des données car ce code leur permettait d'exporter des données sensibles d'utilisateurs vers leur propre domaine.
 
@@ -97,7 +98,8 @@ Fonction qui empêche l'ajout de caractères autres que des lettres (tout ce qui
 
 - Mettre en place une CSP (Content Security Policy): cela permet de limiter les sources autorisées pour charger du JavaScript. Ainsi, même si un script malveillant est injecté, le navigateur le bloque s’il vient d’une source qui n'est pas autorisée.
 
-- Mettre en place un SRI (SubResource Integration) permet de vérifier automatiquement que les fichiers JavaScript chargés (librairies externes) n'ont pas été modifiés. Donc, si un attaquant modifie un script légitime (comme dans l’affaire British Airways), le navigateur bloque immédiatement son chargement.
+- Mettre en place un **SRI (SubResource Integration)** permet de vérifier automatiquement que les fichiers JavaScript chargés (librairies externes) n'ont pas été modifiés. Donc, si un attaquant modifie un script légitime (comme dans l’affaire British Airways), le navigateur bloque immédiatement son chargement.
+L'une des faiblesses de cette sécurité c'est que cela rend complexe les mise à jour du code car le hash SRI doit être recalculé et modifié dans le code HTML. Ainsi, cette solution n'est pas adapté pour les codes dynamique. Enfin, elle devient inefficace si les attaquants ont accès au code HTML du site car ils pourront soit changer l’URL du script, soit remplacer directement le hash SRI.
 
 - Mettre en place une solution de file integrity monitoring qui permet de détecter une modification non autorisée dans les fichiers JavaScript du serveur et la bloque. 
 
@@ -162,3 +164,5 @@ https://www.orsys.fr/orsys-lemag/Glossaire/csp-%F0%9F%9F%A2-protection/
 https://www.feroot.com/education-center/what-is-subresource-integrity-sri/
 
 https://www.wiz.io/fr-fr/academy/static-application-security-testing-sast
+
+https://www.hahwul.com/sec/web-security/sri/
