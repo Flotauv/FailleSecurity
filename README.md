@@ -7,7 +7,7 @@ Le projet a pour vocation d'exploiter une faille pour sensibiliser les personnes
 ## British Airways et sa faille XSS
 **Service compromis**. 
 
-La faille que nous avons choisit est de type XSS et a touché British Airways en 2018. 
+La faille que nous avons choisi est de type XSS et a touché British Airways en 2018. 
 L’entreprise a subi une attaque Magecart sur sa page de paiement en ligne.  
 Les attaquants ont réussi à injecter des lignes de code JavaScript dans une bibliothèque tierce (Modernizr) chargée par le site web de British Airways.  
 Ce script captait les informations saisies dans le formulaire  que remplissait l’utilisateur (nom, adresse, numéro de carte...) au moment où il validait son paiement par carte.  
