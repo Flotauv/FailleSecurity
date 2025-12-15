@@ -104,10 +104,6 @@ L'une des faiblesses de cette sécurité c'est que cela rend complexe les mise �
 - Mettre en place une solution de file integrity monitoring qui permet de détecter une modification non autorisée dans les fichiers JavaScript du serveur et la bloque. 
 
 
-
-
-
-
 ## Quelles sont les bonnes pratiques à effectuer ?
 
 - Toujours vérifier l'accès à une interface web : le http**S** à la fin !  
@@ -166,3 +162,7 @@ https://www.feroot.com/education-center/what-is-subresource-integrity-sri/
 https://www.wiz.io/fr-fr/academy/static-application-security-testing-sast
 
 https://www.hahwul.com/sec/web-security/sri/
+
+https://www.blackduck.com/glossary/what-is-dast.html#:~:text=Definition,visibility%20into%20the%20source%20program.
+
+https://pentest-tools.com/blog/xss-attacks-practical-scenarios
