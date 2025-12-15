@@ -28,11 +28,11 @@ L'attaque où la connexion au contenu malveillant est initiée à partir du clie
 
 !['Intjection-code-tentative'](images/injection-code-tentative.jpg)
 
-Exemple de faille XSS dit **"reflected"**, en théorie, le site nous renvoit le texte entré dans la case du formulaire, le pirate via un formulaire injecte son code malicieux sous forme d'une balise **script**.
+Exemple de faille XSS dit **"reflected"**, en théorie, le site nous renvoie le texte entré dans la case du formulaire, le pirate via un formulaire injecte son code malicieux sous forme d'une balise **script**.
 
 !['Injection-code-result'](images/injection-code-result.jpg)
 
-On voit bien que le serveur web d'adresse IP : 192.168.1.172 renvoit le contenu dans la balise **script** à savoir le texte : 'Exemple XSS reflété' avec une faute d'ortographe.  
+On voit bien que le serveur web d'adresse IP : 192.168.1.172 renvoie le contenu dans la balise **script** à savoir le texte : 'Exemple XSS reflété' avec une faute d'ortographe.  
 
 L'objectif étant de cibler les vulnérabilités de l'appareil client ou d'un ou plusieurs de ses logiciels (comprennent des logiciels de traitement de texte, lecteur PDF, des navigateurs Web, environnement Java, etc) dans le but d’obtenir des informations sensibles (cookies, identifiants, numéro de CB, etc.) ou de prendre le contrôle des postes de travail infectés.
 
@@ -73,7 +73,7 @@ if (array_key_exists("name", $_GET ) && $_GET[ 'name' ] != NULL){
 }
 ?>
 ```
-Ce code .php présent dans le code source va permettre de remplacer l'input **'script'** s'il existe en une chaine vide de caractère avant qu'il soit incorporé dans le fichier .html et qu'il soit interprété comme une balise **'script'**.  
+Ce code .php présent dans le code source va permettre de remplacer l'input **'script'** s'il existe en une chaîne vide de caractère avant qu'il soit incorporé dans le fichier .html et qu'il soit interprété comme une balise **'script'**.  
 
 ```
 <?php
@@ -94,12 +94,12 @@ function secure($variable) {
     }
 
 ```
-Fonction qui empêche l'ajout de caractères autres que des lettres (tout ce qui est <> pour l'ajout de bouttons ou de balises est impossible.)
+Fonction qui empêche l'ajout de caractères autres que des lettres (tout ce qui est <> pour l'ajout de boutons ou de balises est impossible.)
 
 - Mettre en place une CSP (Content Security Policy): cela permet de limiter les sources autorisées pour charger du JavaScript. Ainsi, même si un script malveillant est injecté, le navigateur le bloque s’il vient d’une source qui n'est pas autorisée.
 
 - Mettre en place un **SRI (SubResource Integration)** permet de vérifier automatiquement que les fichiers JavaScript chargés (librairies externes) n'ont pas été modifiés. Donc, si un attaquant modifie un script légitime (comme dans l’affaire British Airways), le navigateur bloque immédiatement son chargement.
-L'une des faiblesses de cette sécurité c'est que cela rend complexe les mise à jour du code car le hash SRI doit être recalculé et modifié dans le code HTML. Ainsi, cette solution n'est pas adapté pour les codes dynamique. Enfin, elle devient inefficace si les attaquants ont accès au code HTML du site car ils pourront soit changer l’URL du script, soit remplacer directement le hash SRI.
+L'une des faiblesses de cette sécurité c'est que cela rend complexe les mise à jour du code car le hash SRI doit être recalculé et modifié dans le code HTML. Ainsi, cette solution n'est pas adaptée pour les codes dynamique. Enfin, elle devient inefficace si les attaquants ont accès au code HTML du site car ils pourront soit changer l’URL du script, soit remplacé directement le hash SRI.
 
 - Mettre en place une solution de file integrity monitoring qui permet de détecter une modification non autorisée dans les fichiers JavaScript du serveur et la bloque. 
 
@@ -107,11 +107,11 @@ L'une des faiblesses de cette sécurité c'est que cela rend complexe les mise �
 ## Quelles sont les bonnes pratiques à effectuer ?
 
 - Toujours vérifier l'accès à une interface web : le http**S** à la fin !  
-Dans notre exemple, on aurait très bien pu faire rediriger vers un autre site malveillant avec l'injection du code explicité précèdement. 
+Dans notre exemple, on aurait très bien pu faire rediriger vers un autre site malveillant avec l'injection du code explicité précédemment. 
 
-- Utilisation de Réseau Privé Virtuel (VPN) qui permet de protéger le traffic réseau.
+- Utilisation de Réseau Privé Virtuel (VPN) qui permet de protéger le trafic réseau.
 
-- Être vigilant aux symptomes de présence des codes malveillants comme des potentiels ralentissements, des ajouts d'extension non désirées, surcharge du processeur, l'antivirus ou les antimalware désactivés sans son intervention ...
+- Être vigilant aux symptômes de présence des codes malveillants comme des potentiels ralentissements, des ajouts d'extension non désirées, surcharge du processeur, l'antivirus ou les antimalware désactivés sans son intervention ...
 ## Exploitation de la faille de sécurité (Démo)
 
 
@@ -129,7 +129,7 @@ Note : Docker doit être entrain de tourner sur votre machine.
 localhost/8080
 
 ````
-**Étape 3** : Cliquez sur le boutton "Acheter" pour passer au formulaire
+**Étape 3** : Cliquez sur le bouton "Acheter" pour passer au formulaire
 
 
 **Étape 4** : Amusez vous à faire injecter du code dans le site (redirection vers d'autres pages, ajout de code marrant ...).
@@ -140,7 +140,7 @@ localhost/8080
 Script pour mettre en évidence la faille !
 
 ````
-<script>window.location="https://pigeon.com"</script>
+<script>window.location="https://www.pigeon.com"</script>
 ````
 Commande pour diriger l'utilisateur vers un site de son choix 
 
@@ -166,3 +166,7 @@ https://www.hahwul.com/sec/web-security/sri/
 https://www.blackduck.com/glossary/what-is-dast.html#:~:text=Definition,visibility%20into%20the%20source%20program.
 
 https://pentest-tools.com/blog/xss-attacks-practical-scenarios
+
+https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md
+
+https://github.com/iciamyplant/client_side_attack
